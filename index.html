@@ -1,1 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bhagyaa | Cybersecurity Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
 
+  <!-- Navigation -->
+  <header class="header">
+    <a href="#" class="logo">&lt;Bhagyaa /&gt;</a>
+    <nav class="nav">
+      <a href="#about">About</a>
+      <a href="#terminal">Terminal</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-container">
+        <div class="status-badge"><span class="pulse"></span> SYSTEM STATUS: ONLINE</div>
+        <h1>Hi, I'm <span class="highlight">Bhagyaa</span></h1>
+        <p class="hero-bio">
+          Cybersecurity researcher & student exploring digital security, threat vectors, ransomware defense, and hardware safety.
+        </p>
+        <div class="hero-buttons">
+          <a href="#projects" class="btn primary-btn">Explore Projects</a>
+          <a href="#terminal" class="btn secondary-btn">Launch Terminal</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Terminal -->
+    <section id="terminal" class="section">
+      <div class="container">
+        <h2 class="section-title">Interactive Terminal</h2>
+        <div class="terminal-window">
+          <div class="terminal-header">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <span class="terminal-title">bhagyaa@security-lab:~</span>
+          </div>
+          <div class="terminal-body" id="terminal-body">
+            <p><span class="prompt">bhagyaa@security-lab:~$</span> Type <span class="cmd">help</span> for available security tools.</p>
+          </div>
+          <div class="terminal-input-line">
+            <span class="prompt">bhagyaa@security-lab:~$</span>
+            <input type="text" id="terminal-input" placeholder="Type a command (e.g., help, scan, bio)..." />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+      <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <div class="card about-card">
+          <p>
+            I focus on safe digital practices and cybersecurity threat analysis. My research spans vector threats including ransomware propagation, phishing tactics, identity theft prevention, juice jacking hardware risks, and the social impact of technology overuse.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Projects Section -->
+    <section id="projects" class="section">
+      <div class="container">
+        <h2 class="section-title">Projects</h2>
+        
+        <div class="filter-bar">
+          <button class="filter-btn active" onclick="filterProjects('all')">All Work</button>
+          <button class="filter-btn" onclick="filterProjects('security')">Cybersecurity</button>
+          <button class="filter-btn" onclick="filterProjects('video')">Video Production</button>
+        </div>
+
+        <div class="grid">
+          <div class="card project-card" data-category="video security">
+            <div class="card-top">
+              <span class="badge-tag">Video Project</span>
+            </div>
+            <h3>Digital Security & Threat Vectors</h3>
+            <p>A comprehensive research and video project exploring cyberbullying, identity theft, ransomware, phishing tactics, juice jacking hardware risks, and digital wellness.</p>
+            <div class="tags">
+              <span>Cybersecurity</span>
+              <span>Phishing</span>
+              <span>Hardware Security</span>
+            </div>
+          </div>
+
+          <div class="card project-card" data-category="security">
+            <div class="card-top">
+              <span class="badge-tag">Security Analysis</span>
+            </div>
+            <h3>Juice Jacking Defense & Hardware Safety</h3>
+            <p>An educational study examining USB charging kiosk vulnerabilities, mobile exploit vectors, and practical hardware defenses for everyday users.</p>
+            <div class="tags">
+              <span>USB Risks</span>
+              <span>Mobile Security</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+      <div class="container">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="card contact-card">
+          <p>Interested in security research or technical collaboration?</p>
+          <a href="mailto:your-email@example.com" class="btn primary-btn">Send Email</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2026 Bhagyaa. Built with HTML, CSS & JavaScript.</p>
+  </footer>
+
+  <script>
+    function filterProjects(category) {
+      const buttons = document.querySelectorAll('.filter-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+
+      const cards = document.querySelectorAll('.project-card');
+      cards.forEach(card => {
+        if (category === 'all' || card.getAttribute('data-category').includes(category)) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    const terminalInput = document.getElementById('terminal-input');
+    const terminalBody = document.getElementById('terminal-body');
+
+    terminalInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        const cmd = this.value.trim().toLowerCase();
+        this.value = '';
+
+        const line = document.createElement('p');
+        line.innerHTML = `<span class="prompt">bhagyaa@security-lab:~$</span> ${cmd}`;
+        terminalBody.appendChild(line);
+
+        let output = '';
+        if (cmd === 'help') {
+          output = 'Available commands: <span class="cmd">bio</span>, <span class="cmd">projects</span>, <span class="cmd">scan</span>, <span class="cmd">clear</span>';
+        } else if (cmd === 'bio') {
+          output = 'Bhagyaa - Cybersecurity Researcher & Student focused on digital safety and threat analysis.';
+        } else if (cmd === 'projects') {
+          output = '1. Digital Security Video (Phishing, Ransomware, Juice Jacking)<br>2. Hardware Threat Analysis';
+        } else if (cmd === 'scan') {
+          output = '<span style="color:#10b981;">[+] System scan clean. 0 vulnerabilities found on local node.</span>';
+        } else if (cmd === 'clear') {
+          terminalBody.innerHTML = '';
+          return;
+        } else if (cmd !== '') {
+          output = `Command not recognized: '${cmd}'. Type <span class="cmd">help</span>.`;
+        }
+
+        if (output) {
+          const resp = document.createElement('p');
+          resp.className = 'response';
+          resp.innerHTML = output;
+          terminalBody.appendChild(resp);
+        }
+
+        terminalBody.scrollTop = terminalBody.scrollHeight;
+      }
+    });
+  </script>
+
+</body>
+</html>
